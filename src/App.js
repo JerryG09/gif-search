@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { lazy, Suspense } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Loader from 'react-loader-spinner';
 import './App.css';
+const Home = lazy(() => import('./view/home'));
+const GifDetail = lazy(() => import('./view/gifDetail'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className='container'>
+      <Router>
+        <Suspense
+          fallback={
+            <div className="center">
+              <div className="center_loader">
+                <Loader
+                  type="Triangle"
+                  color="#000B7C"
+                  height="200"
+                  width="200"
+                />
+              </div>
+            </div>
+          }
         >
-          Learn React
-        </a>
-      </header>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/details' component={GifDetail} />
+          </Switch>
+        </Suspense>
+      </Router>
     </div>
   );
 }
