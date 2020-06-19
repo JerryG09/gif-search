@@ -17,7 +17,6 @@ import { fetchGifs } from '../../redux/actions/userActions';
 const back = '/icons/back.svg'
 const right = '/icons/next.svg'
 
-
 const Home = () => {
   const dispatch = useDispatch();
   const userGifs = useSelector(({ userReducer }) => userReducer);
